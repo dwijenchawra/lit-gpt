@@ -2,7 +2,7 @@ import os
 import sys
 import time
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Optional, List, Dict, Tuple
 
 import lightning as L
 import torch
@@ -13,39 +13,88 @@ wd = Path(__file__).parent.parent.resolve()
 sys.path.append(str(wd))
 
 from generate.base import generate
-from lit_gpt.adapter import GPT, Block, Config
+from lit_gpt.adapter import GPT, Config, Block
 from lit_gpt.adapter_v2 import (
-    adapter_filter,
-    add_adapter_v2_parameters_to_linear_layers,
     mark_only_adapter_v2_as_trainable,
+    add_adapter_v2_parameters_to_linear_layers,
+    adapter_filter,
 )
-from lit_gpt.speed_monitor import SpeedMonitorFabric as SpeedMonitor
-from lit_gpt.speed_monitor import estimate_flops, measure_flops
 from lit_gpt.tokenizer import Tokenizer
-from lit_gpt.utils import check_valid_checkpoint_dir, chunked_cross_entropy, lazy_load, num_parameters, step_csv_logger
+from lit_gpt.utils import lazy_load, check_valid_checkpoint_dir, step_csv_logger, chunked_cross_entropy
+from lit_gpt.speed_monitor import SpeedMonitorFabric as SpeedMonitor, measure_flops, estimate_flops
 from scripts.prepare_alpaca import generate_prompt
 
 eval_interval = 600
 save_interval = 1000
 eval_iters = 100
 log_interval = 1
-devices = 1
+
+###################
+# CHANGE THESE TO MATCH SBATCH FILE
+###################
+num_nodes = 2
+devices = 2 # DO NOT CHANGE FOR GILBRETH-K nodes
+
+
+
+
 # change this value to force a maximum sequence length
 override_max_seq_length = None
+'''
+after each batch, the step increments
+"backpropogation"
 
+we want the steps to be larger
+
+iterations vs steps?
+
+1 device: one step  = batchsize / microbatchsize
+    this is the number of iterations needed to finish one step
+
+one epoch = one full pass through the dataset
+
+VS VISION
+if ds as 20k samples -> that is one epoch
+
+in NLP:
+iterations are more commonly used
+NLP datasets are so much larger... if we do epochs, it is enough for pretraining
+
+For large pretraining, typically its 1 epoch
+
+'''
 # Hyperparameters
 learning_rate = 3e-3
-batch_size = 128 / devices
-micro_batch_size = 2  # set to 2 because this is fit into 12GB Vram
+
+
+batch_size = 256 # all devices prior to optimization
+micro_batch_size = 8 # per device
+
+
+
 gradient_accumulation_iters = batch_size // micro_batch_size
 assert gradient_accumulation_iters > 0
-epoch_size = 50000  # train dataset size
+epoch_size = 2485  # train dataset size
 num_epochs = 5
-max_iters = num_epochs * (epoch_size // micro_batch_size) // devices
+
+max_iters = num_epochs * (epoch_size // micro_batch_size) // devices # you can change this to any number of iterations
+
+
 weight_decay = 0.02
 warmup_steps = 2 * (epoch_size // micro_batch_size) // devices // gradient_accumulation_iters  # 2 epochs
 
 hparams = {k: v for k, v in locals().items() if isinstance(v, (int, float, str)) and not k.startswith("_")}
+
+print("learning rate", learning_rate)
+print("batch size", batch_size)
+print("micro batch size", micro_batch_size)
+print("gradient accumulation iters", gradient_accumulation_iters)
+print("epoch size", epoch_size)
+print("num epochs", num_epochs)
+print("max iters", max_iters)
+print("weight decay", weight_decay)
+print("warmup steps", warmup_steps)
+print("hparams", hparams)
 
 
 def setup(
@@ -74,13 +123,16 @@ def setup(
     else:
         strategy = "auto"
 
+    print("Making logger")
     logger = step_csv_logger(out_dir.parent, out_dir.name, flush_logs_every_n_steps=log_interval)
-    fabric = L.Fabric(devices=fabric_devices, strategy=strategy, precision=precision, loggers=logger)
-    fabric.print(hparams)
+    print("Launching Fabric")
+    fabric = L.Fabric(devices=fabric_devices, num_nodes=num_nodes, strategy=strategy, precision=precision, loggers=logger)
     fabric.launch(main, data_dir, checkpoint_dir, out_dir)
 
 
 def main(fabric: L.Fabric, data_dir: Path, checkpoint_dir: Path, out_dir: Path):
+    print("Launching Main")
+    fabric.print(hparams)
     check_valid_checkpoint_dir(checkpoint_dir)
 
     speed_monitor = SpeedMonitor(fabric, window_size=50, time_unit="seconds")
@@ -106,18 +158,20 @@ def main(fabric: L.Fabric, data_dir: Path, checkpoint_dir: Path, out_dir: Path):
     add_adapter_v2_parameters_to_linear_layers(model)
     mark_only_adapter_v2_as_trainable(model)
 
-    fabric.print(f"Number of trainable parameters: {num_parameters(model, requires_grad=True):,}")
-    fabric.print(f"Number of non trainable parameters: {num_parameters(model, requires_grad=False):,}")
     trainable_params = [p for p in model.parameters() if p.requires_grad]
+    num_params = sum(p.numel() for p in trainable_params)
+    fabric.print(f"Number of trainable parameters: {num_params:,}")
+    num_params = sum(p.numel() for p in model.parameters() if not p.requires_grad)
+    fabric.print(f"Number of non trainable parameters: {num_params:,}")
 
     optimizer = torch.optim.AdamW(trainable_params, lr=learning_rate, weight_decay=weight_decay)
     model, optimizer = fabric.setup(model, optimizer)
 
     fabric.seed_everything(1337 + fabric.global_rank)
 
-    train_time = time.perf_counter()
+    train_time = time.time()
     train(fabric, model, optimizer, train_data, val_data, checkpoint_dir, out_dir, speed_monitor)
-    fabric.print(f"Training time: {(time.perf_counter()-train_time):.2f}s")
+    fabric.print(f"Training time: {(time.time()-train_time):.2f}s")
 
     # Save the final checkpoint at the end of training
     save_path = out_dir / "lit_model_adapter_finetuned.pth"
@@ -137,22 +191,21 @@ def train(
     tokenizer = Tokenizer(checkpoint_dir)
     max_seq_length, longest_seq_length, longest_seq_ix = get_max_seq_length(train_data)
 
-    validate(fabric, model, val_data, tokenizer, longest_seq_length)  # sanity check
+    # validate(fabric, model, val_data, tokenizer, longest_seq_length)  # sanity check
 
-    with torch.device("meta"):
-        meta_model = GPT(model.config)
-        # estimated flops doesn't account for frozen weights, so it's not reported
-        add_adapter_v2_parameters_to_linear_layers(meta_model)
-        mark_only_adapter_v2_as_trainable(meta_model)
-        # TODO: this assumes that samples have a fixed length which is most likely false during finetuning
-        x = torch.randint(0, 1, (micro_batch_size, longest_seq_length))
-        measured_flops = measure_flops(meta_model, x)
-        fabric.print(f"Measured TFLOPs: {measured_flops * fabric.world_size / 1e12:.2f}")
-        del meta_model, x
+    # with torch.device("meta"):
+    #     meta_model = GPT(model.config)
+    #     # estimated is too much of an optimistic estimate, left just for reference
+    #     estimated_flops = estimate_flops(meta_model) * micro_batch_size
+    #     fabric.print(f"Estimated TFLOPs: {estimated_flops * fabric.world_size / 1e12:.2f}")
+    #     x = torch.randint(0, 1, (micro_batch_size, model.config.block_size))
+    #     measured_flops = measure_flops(meta_model, x)
+    #     fabric.print(f"Measured TFLOPs: {measured_flops * fabric.world_size / 1e12:.2f}")
+    #     del meta_model, x
 
     step_count = 0
     total_lengths = 0
-    total_t0 = time.perf_counter()
+    total_t0 = time.time()
 
     if fabric.device.type == "xla":
         import torch_xla.core.xla_model as xm
@@ -165,7 +218,7 @@ def train(
             for param_group in optimizer.param_groups:
                 param_group["lr"] = lr
 
-        iter_t0 = time.perf_counter()
+        iter_t0 = time.time()
 
         input_ids, targets = get_batch(
             fabric, train_data, longest_seq_length, longest_seq_ix if iter_num == 0 else None
@@ -186,16 +239,18 @@ def train(
         elif fabric.device.type == "xla":
             xm.mark_step()
 
-        t1 = time.perf_counter()
+        t1 = time.time()
         total_lengths += input_ids.size(1)
         speed_monitor.on_train_batch_end(
             (iter_num + 1) * micro_batch_size,
             t1 - total_t0,
             # this assumes that device FLOPs are the same and that all devices have the same batch size
             fabric.world_size,
-            flops_per_batch=measured_flops,
+            flops_per_batch=measure_flops,
             lengths=total_lengths,
         )
+
+        print("Iter num: ", iter_num, "Step count: ", step_count, "Loss: ", loss.item(), "Iter time: ", (t1 - iter_t0) * 1000, "ms")
         if iter_num % log_interval == 0:
             fabric.print(
                 f"iter {iter_num} step {step_count}: loss {loss.item():.4f}, iter time:"
@@ -203,9 +258,9 @@ def train(
             )
 
         if not is_accumulating and step_count % eval_interval == 0:
-            t0 = time.perf_counter()
+            t0 = time.time()
             val_loss = validate(fabric, model, val_data, tokenizer, longest_seq_length)
-            t1 = time.perf_counter() - t0
+            t1 = time.time() - t0
             speed_monitor.eval_end(t1)
             fabric.print(f"step {iter_num}: val loss {val_loss:.4f}, val time: {t1 * 1000:.2f}ms")
             fabric.barrier()
@@ -233,7 +288,7 @@ def validate(
     fabric.print(instruction)
     sample = {"instruction": instruction, "input": ""}
     prompt = generate_prompt(sample)
-    encoded = tokenizer.encode(prompt, device=fabric.device)
+    encoded = tokenizer.encode(prompt, device=model.device)
     max_returned_tokens = len(encoded) + 100
     output = generate(
         model, idx=encoded, max_returned_tokens=max_returned_tokens, max_seq_length=max_returned_tokens, temperature=0.8

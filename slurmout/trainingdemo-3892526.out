@@ -1,0 +1,118 @@
+[2023-08-09 19:14:07,212] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-08-09 19:14:07,208] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-08-09 19:14:07,212] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-08-09 19:14:07,208] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+gilbreth-k001:113847:113847 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k001:113847:113847 [0] NCCL INFO Bootstrap : Using ib0:172.18.36.98<0>
+gilbreth-k001:113847:113847 [0] NCCL INFO NET/Plugin : Plugin load (libnccl-net.so) returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory
+gilbreth-k001:113847:113847 [0] NCCL INFO NET/Plugin : No plugin found, using internal implementation
+gilbreth-k001:113847:113847 [0] NCCL INFO cudaDriverVersion 12010
+NCCL version 2.17.1+cuda11.8
+gilbreth-k001:113848:113848 [1] NCCL INFO cudaDriverVersion 12010
+gilbreth-k001:113848:113848 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k001:113848:113848 [1] NCCL INFO Bootstrap : Using ib0:172.18.36.98<0>
+gilbreth-k001:113848:113848 [1] NCCL INFO NET/Plugin : Plugin load (libnccl-net.so) returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory
+gilbreth-k001:113848:113848 [1] NCCL INFO NET/Plugin : No plugin found, using internal implementation
+gilbreth-k001:113848:114203 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k001:113848:114203 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB ib0:172.18.36.98<0>
+gilbreth-k001:113848:114203 [1] NCCL INFO Using network IB
+gilbreth-k001:113848:114203 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff,00000000
+gilbreth-k001:113848:114203 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] -1/-1/-1->1->0
+gilbreth-k001:113848:114203 [1] NCCL INFO P2P Chunksize set to 131072
+gilbreth-k001:113848:114203 [1] NCCL INFO Channel 00/0 : 1[81000] -> 2[21000] [send] via NET/IB/0
+gilbreth-k001:113848:114203 [1] NCCL INFO Channel 01/0 : 1[81000] -> 2[21000] [send] via NET/IB/0
+gilbreth-k001:113848:114203 [1] NCCL INFO Connected all rings
+gilbreth-k001:113848:114203 [1] NCCL INFO Channel 00/0 : 1[81000] -> 0[21000] via P2P/IPC
+gilbreth-k001:113848:114203 [1] NCCL INFO Channel 01/0 : 1[81000] -> 0[21000] via P2P/IPC
+gilbreth-k001:113848:114203 [1] NCCL INFO Connected all trees
+gilbreth-k001:113848:114203 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gilbreth-k001:113848:114203 [1] NCCL INFO 2 coll channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gilbreth-k001:113848:114203 [1] NCCL INFO comm 0x56167a261ec0 rank 1 nranks 4 cudaDev 1 busId 81000 commId 0xace4be5ebadf88a8 - Init COMPLETE
+gilbreth-k011:123953:123953 [1] NCCL INFO cudaDriverVersion 12010
+gilbreth-k011:123953:123953 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k011:123953:123953 [1] NCCL INFO Bootstrap : Using ib0:172.18.36.108<0>
+gilbreth-k011:123953:123953 [1] NCCL INFO NET/Plugin : Plugin load (libnccl-net.so) returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory
+gilbreth-k011:123953:123953 [1] NCCL INFO NET/Plugin : No plugin found, using internal implementation
+gilbreth-k011:123953:124262 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k011:123953:124262 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB ib0:172.18.36.108<0>
+gilbreth-k011:123953:124262 [1] NCCL INFO Using network IB
+gilbreth-k011:123953:124262 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff,00000000
+gilbreth-k011:123953:124262 [1] NCCL INFO Trees [0] -1/-1/-1->3->2 [1] -1/-1/-1->3->2
+gilbreth-k011:123953:124262 [1] NCCL INFO P2P Chunksize set to 131072
+gilbreth-k011:123953:124262 [1] NCCL INFO Channel 00/0 : 3[81000] -> 0[21000] [send] via NET/IB/0
+gilbreth-k011:123953:124262 [1] NCCL INFO Channel 01/0 : 3[81000] -> 0[21000] [send] via NET/IB/0
+gilbreth-k011:123953:124262 [1] NCCL INFO Connected all rings
+gilbreth-k011:123953:124262 [1] NCCL INFO Channel 00/0 : 3[81000] -> 2[21000] via P2P/IPC
+gilbreth-k011:123953:124262 [1] NCCL INFO Channel 01/0 : 3[81000] -> 2[21000] via P2P/IPC
+gilbreth-k011:123953:124262 [1] NCCL INFO Connected all trees
+gilbreth-k011:123953:124262 [1] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gilbreth-k011:123953:124262 [1] NCCL INFO 2 coll channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gilbreth-k011:123953:124262 [1] NCCL INFO comm 0x55fab48bf200 rank 3 nranks 4 cudaDev 1 busId 81000 commId 0xace4be5ebadf88a8 - Init COMPLETE
+gilbreth-k011:123952:123952 [0] NCCL INFO cudaDriverVersion 12010
+gilbreth-k011:123952:123952 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k011:123952:123952 [0] NCCL INFO Bootstrap : Using ib0:172.18.36.108<0>
+gilbreth-k011:123952:123952 [0] NCCL INFO NET/Plugin : Plugin load (libnccl-net.so) returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory
+gilbreth-k011:123952:123952 [0] NCCL INFO NET/Plugin : No plugin found, using internal implementation
+gilbreth-k011:123952:124261 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k011:123952:124261 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB ib0:172.18.36.108<0>
+gilbreth-k011:123952:124261 [0] NCCL INFO Using network IB
+gilbreth-k011:123952:124261 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+gilbreth-k011:123952:124261 [0] NCCL INFO Trees [0] 3/-1/-1->2->0 [1] 3/0/-1->2->-1
+gilbreth-k011:123952:124261 [0] NCCL INFO P2P Chunksize set to 131072
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 00/0 : 1[81000] -> 2[21000] [receive] via NET/IB/0
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 01/0 : 1[81000] -> 2[21000] [receive] via NET/IB/0
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 00/0 : 2[21000] -> 3[81000] via P2P/IPC
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 01/0 : 2[21000] -> 3[81000] via P2P/IPC
+gilbreth-k011:123952:124261 [0] NCCL INFO Connected all rings
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 00/0 : 0[21000] -> 2[21000] [receive] via NET/IB/0
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 01/0 : 0[21000] -> 2[21000] [receive] via NET/IB/0
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 00/0 : 2[21000] -> 0[21000] [send] via NET/IB/0
+gilbreth-k011:123952:124261 [0] NCCL INFO Channel 01/0 : 2[21000] -> 0[21000] [send] via NET/IB/0
+gilbreth-k011:123952:124261 [0] NCCL INFO Connected all trees
+gilbreth-k011:123952:124261 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gilbreth-k011:123952:124261 [0] NCCL INFO 2 coll channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gilbreth-k011:123952:124261 [0] NCCL INFO comm 0x557c03339980 rank 2 nranks 4 cudaDev 0 busId 21000 commId 0xace4be5ebadf88a8 - Init COMPLETE
+gilbreth-k001:113847:114202 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k001:113847:114202 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB ib0:172.18.36.98<0>
+gilbreth-k001:113847:114202 [0] NCCL INFO Using network IB
+gilbreth-k001:113847:114202 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 00/02 :    0   1   2   3
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 01/02 :    0   1   2   3
+gilbreth-k001:113847:114202 [0] NCCL INFO Trees [0] 1/2/-1->0->-1 [1] 1/-1/-1->0->2
+gilbreth-k001:113847:114202 [0] NCCL INFO P2P Chunksize set to 131072
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 00/0 : 3[81000] -> 0[21000] [receive] via NET/IB/0
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 01/0 : 3[81000] -> 0[21000] [receive] via NET/IB/0
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 00/0 : 0[21000] -> 1[81000] via P2P/IPC
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 01/0 : 0[21000] -> 1[81000] via P2P/IPC
+gilbreth-k001:113847:114202 [0] NCCL INFO Connected all rings
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 00/0 : 2[21000] -> 0[21000] [receive] via NET/IB/0
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 01/0 : 2[21000] -> 0[21000] [receive] via NET/IB/0
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 00/0 : 0[21000] -> 2[21000] [send] via NET/IB/0
+gilbreth-k001:113847:114202 [0] NCCL INFO Channel 01/0 : 0[21000] -> 2[21000] [send] via NET/IB/0
+gilbreth-k001:113847:114202 [0] NCCL INFO Connected all trees
+gilbreth-k001:113847:114202 [0] NCCL INFO threadThresholds 8/8/64 | 32/8/64 | 512 | 512
+gilbreth-k001:113847:114202 [0] NCCL INFO 2 coll channels, 0 nvls channels, 2 p2p channels, 2 p2p channels per peer
+gilbreth-k001:113847:114202 [0] NCCL INFO comm 0x55848acf4300 rank 0 nranks 4 cudaDev 0 busId 21000 commId 0xace4be5ebadf88a8 - Init COMPLETE
+learning rate 0.003
+batch size 256
+micro batch size 8
+gradient accumulation iters 32
+epoch size 2485
+num epochs 5
+max iters 775
+weight decay 0.02
+warmup steps 9
+hparams {'eval_interval': 600, 'save_interval': 1000, 'eval_iters': 100, 'log_interval': 1, 'num_nodes': 2, 'devices': 2, 'learning_rate': 0.003, 'batch_size': 256, 'micro_batch_size': 8, 'gradient_accumulation_iters': 32, 'epoch_size': 2485, 'num_epochs': 5, 'max_iters': 775, 'weight_decay': 0.02, 'warmup_steps': 9}
+Making logger
+Launching Fabric
+Launching Main
+{'eval_interval': 600, 'save_interval': 1000, 'eval_iters': 100, 'log_interval': 1, 'num_nodes': 2, 'devices': 2, 'learning_rate': 0.003, 'batch_size': 256, 'micro_batch_size': 8, 'gradient_accumulation_iters': 32, 'epoch_size': 2485, 'num_epochs': 5, 'max_iters': 775, 'weight_decay': 0.02, 'warmup_steps': 9}
+Loading model 'checkpoints/meta-llama/Llama-2-7b-chat-hf/lit_model.pth' with {'org': 'meta-llama', 'name': 'Llama-2-7b-chat-hf', 'block_size': 4096, 'vocab_size': 32000, 'padding_multiple': 64, 'padded_vocab_size': 32000, 'n_layer': 32, 'n_head': 32, 'n_embd': 4096, 'rotary_percentage': 1.0, 'parallel_residual': False, 'bias': False, 'n_query_groups': 32, 'shared_attention_norm': False, '_norm_class': 'RMSNorm', 'norm_eps': 1e-05, '_mlp_class': 'LLaMAMLP', 'intermediate_size': 11008, 'condense_ratio': 1, 'adapter_prompt_length': 10, 'adapter_start_layer': 2}
+Number of trainable parameters: 4,279,744
+Number of non trainable parameters: 6,738,149,376
+gilbreth-k011:123953:124266 [1] NCCL INFO [Service thread] Connection closed by localRank 1
+gilbreth-k011:123952:124265 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+gilbreth-k011:123953:124064 [0] NCCL INFO comm 0x55fab48bf200 rank 3 nranks 4 cudaDev 1 busId 81000 - Abort COMPLETE
+gilbreth-k011:123952:124065 [0] NCCL INFO comm 0x557c03339980 rank 2 nranks 4 cudaDev 0 busId 21000 - Abort COMPLETE
+gilbreth-k001:113848:114207 [1] NCCL INFO [Service thread] Connection closed by localRank 1
+gilbreth-k001:113848:114011 [0] NCCL INFO comm 0x56167a261ec0 rank 1 nranks 4 cudaDev 1 busId 81000 - Abort COMPLETE

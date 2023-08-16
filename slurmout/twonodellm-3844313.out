@@ -1,0 +1,233 @@
+[2023-08-04 22:47:31,607] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+[2023-08-04 22:47:31,607] [INFO] [real_accelerator.py:110:get_accelerator] Setting ds_accelerator to cuda (auto detect)
+gilbreth-k013:48448:48448 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k013:48448:48448 [0] NCCL INFO Bootstrap : Using ib0:172.18.36.110<0>
+gilbreth-k013:48448:48448 [0] NCCL INFO NET/Plugin : Plugin load (libnccl-net.so) returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory
+gilbreth-k013:48448:48448 [0] NCCL INFO NET/Plugin : No plugin found, using internal implementation
+gilbreth-k013:48448:48448 [0] NCCL INFO cudaDriverVersion 12010
+NCCL version 2.17.1+cuda11.8
+gilbreth-k013:48448:48894 [0] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k013:48448:48894 [0] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB ib0:172.18.36.110<0>
+gilbreth-k013:48448:48894 [0] NCCL INFO Using network IB
+gilbreth-k013:48448:48894 [0] NCCL INFO Setting affinity for GPU 0 to ffffffff
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 00/04 :    0   1
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 01/04 :    0   1
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 02/04 :    0   1
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 03/04 :    0   1
+gilbreth-k013:48448:48894 [0] NCCL INFO Trees [0] 1/-1/-1->0->-1 [1] -1/-1/-1->0->1 [2] 1/-1/-1->0->-1 [3] -1/-1/-1->0->1
+gilbreth-k013:48448:48894 [0] NCCL INFO P2P Chunksize set to 131072
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 00/0 : 0[21000] -> 1[81000] via P2P/IPC
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 01/0 : 0[21000] -> 1[81000] via P2P/IPC
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 02/0 : 0[21000] -> 1[81000] via P2P/IPC
+gilbreth-k013:48448:48894 [0] NCCL INFO Channel 03/0 : 0[21000] -> 1[81000] via P2P/IPC
+gilbreth-k013:48448:48894 [0] NCCL INFO Connected all rings
+gilbreth-k013:48448:48894 [0] NCCL INFO Connected all trees
+gilbreth-k013:48448:48894 [0] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gilbreth-k013:48448:48894 [0] NCCL INFO 4 coll channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+gilbreth-k013:48448:48894 [0] NCCL INFO comm 0x55a2b4d7adc0 rank 0 nranks 2 cudaDev 0 busId 21000 commId 0x20f5659e5a2a0ffd - Init COMPLETE
+gilbreth-k013:48449:48449 [1] NCCL INFO cudaDriverVersion 12010
+gilbreth-k013:48449:48449 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k013:48449:48449 [1] NCCL INFO Bootstrap : Using ib0:172.18.36.110<0>
+gilbreth-k013:48449:48449 [1] NCCL INFO NET/Plugin : Plugin load (libnccl-net.so) returned 2 : libnccl-net.so: cannot open shared object file: No such file or directory
+gilbreth-k013:48449:48449 [1] NCCL INFO NET/Plugin : No plugin found, using internal implementation
+gilbreth-k013:48449:48895 [1] NCCL INFO NCCL_SOCKET_IFNAME set by environment to ib
+gilbreth-k013:48449:48895 [1] NCCL INFO NET/IB : Using [0]mlx5_0:1/IB [RO]; OOB ib0:172.18.36.110<0>
+gilbreth-k013:48449:48895 [1] NCCL INFO Using network IB
+gilbreth-k013:48449:48895 [1] NCCL INFO Setting affinity for GPU 1 to ffffffff,00000000
+gilbreth-k013:48449:48895 [1] NCCL INFO Trees [0] -1/-1/-1->1->0 [1] 0/-1/-1->1->-1 [2] -1/-1/-1->1->0 [3] 0/-1/-1->1->-1
+gilbreth-k013:48449:48895 [1] NCCL INFO P2P Chunksize set to 131072
+gilbreth-k013:48449:48895 [1] NCCL INFO Channel 00/0 : 1[81000] -> 0[21000] via P2P/IPC
+gilbreth-k013:48449:48895 [1] NCCL INFO Channel 01/0 : 1[81000] -> 0[21000] via P2P/IPC
+gilbreth-k013:48449:48895 [1] NCCL INFO Channel 02/0 : 1[81000] -> 0[21000] via P2P/IPC
+gilbreth-k013:48449:48895 [1] NCCL INFO Channel 03/0 : 1[81000] -> 0[21000] via P2P/IPC
+gilbreth-k013:48449:48895 [1] NCCL INFO Connected all rings
+gilbreth-k013:48449:48895 [1] NCCL INFO Connected all trees
+gilbreth-k013:48449:48895 [1] NCCL INFO threadThresholds 8/8/64 | 16/8/64 | 512 | 512
+gilbreth-k013:48449:48895 [1] NCCL INFO 4 coll channels, 0 nvls channels, 4 p2p channels, 2 p2p channels per peer
+gilbreth-k013:48449:48895 [1] NCCL INFO comm 0x5584bc54f4c0 rank 1 nranks 2 cudaDev 1 busId 81000 commId 0x20f5659e5a2a0ffd - Init COMPLETE
+learning rate 0.003
+batch size 256.0
+micro batch size 128
+gradient accumulation iters 2.0
+epoch size 2485
+num epochs 5
+max iters 47
+weight decay 0.02
+warmup steps 9.0
+hparams {'eval_interval': 600, 'save_interval': 1000, 'eval_iters': 100, 'log_interval': 1, 'devices': 2, 'num_nodes': 1, 'learning_rate': 0.003, 'batch_size': 256.0, 'micro_batch_size': 128, 'gradient_accumulation_iters': 2.0, 'epoch_size': 2485, 'num_epochs': 5, 'max_iters': 47, 'weight_decay': 0.02, 'warmup_steps': 9.0}
+Launching Main
+{'eval_interval': 600, 'save_interval': 1000, 'eval_iters': 100, 'log_interval': 1, 'devices': 2, 'num_nodes': 1, 'learning_rate': 0.003, 'batch_size': 256.0, 'micro_batch_size': 128, 'gradient_accumulation_iters': 2.0, 'epoch_size': 2485, 'num_epochs': 5, 'max_iters': 47, 'weight_decay': 0.02, 'warmup_steps': 9.0}
+Loading model 'checkpoints/meta-llama/Llama-2-7b-chat-hf/lit_model.pth' with {'org': 'meta-llama', 'name': 'Llama-2-7b-chat-hf', 'block_size': 4096, 'vocab_size': 32000, 'padding_multiple': 64, 'padded_vocab_size': 32000, 'n_layer': 32, 'n_head': 32, 'n_embd': 4096, 'rotary_percentage': 1.0, 'parallel_residual': False, 'bias': False, 'n_query_groups': 32, 'shared_attention_norm': False, '_norm_class': 'RMSNorm', 'norm_eps': 1e-05, '_mlp_class': 'LLaMAMLP', 'intermediate_size': 11008, 'condense_ratio': 1, 'adapter_prompt_length': 10, 'adapter_start_layer': 2}
+Number of trainable parameters: 4,279,744
+Number of non trainable parameters: 6,738,149,376
+Validating ...
+Recommend a movie for me to watch during the weekend and explain the reason.
+Below is an instruction that describes a task. Write a response that appropriately completes the request.
+
+### Instruction:
+Recommend a movie for me to watch during the weekend and explain the reason.
+
+### Response:
+I highly recommend "The Shawshank Redemption" for your weekend movie marathon. This classic film is a powerful and thought-provoking drama that explores themes of hope, redemption, and the human spirit. The movie tells the story of two prisoners, Andy Dufresne and Red, as they navigate life inside Shawshank State Penitentiary, and their journey to find freedom and happiness.
+
+The film features outstanding performances by Tim
+Estimated TFLOPs: 49157.58
+Measured TFLOPs: 48339.18
+Iter num:  0 Step count:  0 Loss:  1.7120296955108643 Iter time:  12271.698713302612 ms
+iter 0 step 0: loss 1.7120, iter time: 12271.70ms
+Iter num:  1 Step count:  1 Loss:  1.8987468481063843 Iter time:  15197.952508926392 ms
+iter 1 step 1: loss 1.8987, iter time: 15197.95ms (optimizer.step)
+Iter num:  2 Step count:  1 Loss:  1.789703369140625 Iter time:  11620.753049850464 ms
+iter 2 step 1: loss 1.7897, iter time: 11620.75ms
+Iter num:  3 Step count:  2 Loss:  1.8969061374664307 Iter time:  14195.290088653564 ms
+iter 3 step 2: loss 1.8969, iter time: 14195.29ms (optimizer.step)
+Iter num:  4 Step count:  2 Loss:  1.4622375965118408 Iter time:  11348.469734191895 ms
+iter 4 step 2: loss 1.4622, iter time: 11348.47ms
+Iter num:  5 Step count:  3 Loss:  1.429282784461975 Iter time:  15425.677061080933 ms
+iter 5 step 3: loss 1.4293, iter time: 15425.68ms (optimizer.step)
+Iter num:  6 Step count:  3 Loss:  1.3070060014724731 Iter time:  12009.764194488525 ms
+iter 6 step 3: loss 1.3070, iter time: 12009.76ms
+Iter num:  7 Step count:  4 Loss:  1.337528109550476 Iter time:  13125.8065700531 ms
+iter 7 step 4: loss 1.3375, iter time: 13125.81ms (optimizer.step)
+Iter num:  8 Step count:  4 Loss:  1.1574500799179077 Iter time:  12232.604503631592 ms
+iter 8 step 4: loss 1.1575, iter time: 12232.60ms
+Iter num:  9 Step count:  5 Loss:  1.1797914505004883 Iter time:  14095.840215682983 ms
+iter 9 step 5: loss 1.1798, iter time: 14095.84ms (optimizer.step)
+Iter num:  10 Step count:  5 Loss:  0.9507163763046265 Iter time:  11742.072343826294 ms
+iter 10 step 5: loss 0.9507, iter time: 11742.07ms
+Iter num:  11 Step count:  6 Loss:  1.0180152654647827 Iter time:  14371.793508529663 ms
+iter 11 step 6: loss 1.0180, iter time: 14371.79ms (optimizer.step)
+Iter num:  12 Step count:  6 Loss:  0.8660253882408142 Iter time:  11554.828643798828 ms
+iter 12 step 6: loss 0.8660, iter time: 11554.83ms
+Iter num:  13 Step count:  7 Loss:  0.815097987651825 Iter time:  14327.198505401611 ms
+iter 13 step 7: loss 0.8151, iter time: 14327.20ms (optimizer.step)
+Iter num:  14 Step count:  7 Loss:  0.8224398493766785 Iter time:  12649.794101715088 ms
+iter 14 step 7: loss 0.8224, iter time: 12649.79ms
+Iter num:  15 Step count:  8 Loss:  0.8466382622718811 Iter time:  15892.964839935303 ms
+iter 15 step 8: loss 0.8466, iter time: 15892.96ms (optimizer.step)
+Iter num:  16 Step count:  8 Loss:  0.6973174214363098 Iter time:  13671.411275863647 ms
+iter 16 step 8: loss 0.6973, iter time: 13671.41ms
+Iter num:  17 Step count:  9 Loss:  0.861352264881134 Iter time:  14105.324983596802 ms
+iter 17 step 9: loss 0.8614, iter time: 14105.32ms (optimizer.step)
+Iter num:  18 Step count:  9 Loss:  0.7474682927131653 Iter time:  12579.203367233276 ms
+iter 18 step 9: loss 0.7475, iter time: 12579.20ms
+Iter num:  19 Step count:  10 Loss:  0.816626250743866 Iter time:  16273.287296295166 ms
+iter 19 step 10: loss 0.8166, iter time: 16273.29ms (optimizer.step)
+Iter num:  20 Step count:  10 Loss:  0.8674808144569397 Iter time:  12033.724784851074 ms
+iter 20 step 10: loss 0.8675, iter time: 12033.72ms
+Iter num:  21 Step count:  11 Loss:  0.8170174360275269 Iter time:  14437.857389450073 ms
+iter 21 step 11: loss 0.8170, iter time: 14437.86ms (optimizer.step)
+Iter num:  22 Step count:  11 Loss:  0.7400854229927063 Iter time:  12445.21164894104 ms
+iter 22 step 11: loss 0.7401, iter time: 12445.21ms
+Iter num:  23 Step count:  12 Loss:  0.8082150220870972 Iter time:  14149.605512619019 ms
+iter 23 step 12: loss 0.8082, iter time: 14149.61ms (optimizer.step)
+Iter num:  24 Step count:  12 Loss:  0.8258998990058899 Iter time:  11263.335704803467 ms
+iter 24 step 12: loss 0.8259, iter time: 11263.34ms
+Iter num:  25 Step count:  13 Loss:  0.782907247543335 Iter time:  14690.24109840393 ms
+iter 25 step 13: loss 0.7829, iter time: 14690.24ms (optimizer.step)
+Iter num:  26 Step count:  13 Loss:  0.8780289888381958 Iter time:  11089.11943435669 ms
+iter 26 step 13: loss 0.8780, iter time: 11089.12ms
+Iter num:  27 Step count:  14 Loss:  0.7514199614524841 Iter time:  16621.67453765869 ms
+iter 27 step 14: loss 0.7514, iter time: 16621.67ms (optimizer.step)
+Iter num:  28 Step count:  14 Loss:  0.7895498275756836 Iter time:  12155.397653579712 ms
+iter 28 step 14: loss 0.7895, iter time: 12155.40ms
+Iter num:  29 Step count:  15 Loss:  0.7510338425636292 Iter time:  14013.602495193481 ms
+iter 29 step 15: loss 0.7510, iter time: 14013.60ms (optimizer.step)
+Iter num:  30 Step count:  15 Loss:  0.7392236590385437 Iter time:  12568.393468856812 ms
+iter 30 step 15: loss 0.7392, iter time: 12568.39ms
+Iter num:  31 Step count:  16 Loss:  0.77016681432724 Iter time:  15123.863220214844 ms
+iter 31 step 16: loss 0.7702, iter time: 15123.86ms (optimizer.step)
+Iter num:  32 Step count:  16 Loss:  0.7767276167869568 Iter time:  11683.752059936523 ms
+iter 32 step 16: loss 0.7767, iter time: 11683.75ms
+Iter num:  33 Step count:  17 Loss:  0.730675458908081 Iter time:  15471.948623657227 ms
+iter 33 step 17: loss 0.7307, iter time: 15471.95ms (optimizer.step)
+Iter num:  34 Step count:  17 Loss:  0.7838507890701294 Iter time:  12547.51467704773 ms
+iter 34 step 17: loss 0.7839, iter time: 12547.51ms
+Iter num:  35 Step count:  18 Loss:  0.7531117796897888 Iter time:  15344.0842628479 ms
+iter 35 step 18: loss 0.7531, iter time: 15344.08ms (optimizer.step)
+Iter num:  36 Step count:  18 Loss:  0.7080686092376709 Iter time:  13180.602550506592 ms
+iter 36 step 18: loss 0.7081, iter time: 13180.60ms
+Iter num:  37 Step count:  19 Loss:  0.7752568125724792 Iter time:  16032.64307975769 ms
+iter 37 step 19: loss 0.7753, iter time: 16032.64ms (optimizer.step)
+Iter num:  38 Step count:  19 Loss:  0.8243330717086792 Iter time:  12185.856342315674 ms
+iter 38 step 19: loss 0.8243, iter time: 12185.86ms
+Iter num:  39 Step count:  20 Loss:  0.7319059371948242 Iter time:  14505.111932754517 ms
+learning rate 0.003
+batch size 256.0
+micro batch size 128
+gradient accumulation iters 2.0
+epoch size 2485
+num epochs 5
+max iters 47
+weight decay 0.02
+warmup steps 9.0
+hparams {'eval_interval': 600, 'save_interval': 1000, 'eval_iters': 100, 'log_interval': 1, 'devices': 2, 'num_nodes': 1, 'learning_rate': 0.003, 'batch_size': 256.0, 'micro_batch_size': 128, 'gradient_accumulation_iters': 2.0, 'epoch_size': 2485, 'num_epochs': 5, 'max_iters': 47, 'weight_decay': 0.02, 'warmup_steps': 9.0}
+Launching Main
+Iter num:  0 Step count:  0 Loss:  1.7188301086425781 Iter time:  12216.43590927124 ms
+Iter num:  1 Step count:  1 Loss:  1.7099206447601318 Iter time:  15240.689277648926 ms
+Iter num:  2 Step count:  1 Loss:  1.8032711744308472 Iter time:  11426.973342895508 ms
+Iter num:  3 Step count:  2 Loss:  1.860817790031433 Iter time:  14330.430030822754 ms
+Iter num:  4 Step count:  2 Loss:  1.529382348060608 Iter time:  11297.982215881348 ms
+Iter num:  5 Step count:  3 Loss:  1.477051019668579 Iter time:  16101.280689239502 ms
+Iter num:  6 Step count:  3 Loss:  1.3326951265335083 Iter time:  12009.980916976929 ms
+Iter num:  7 Step count:  4 Loss:  1.3602021932601929 Iter time:  13264.625549316406 ms
+Iter num:  8 Step count:  4 Loss:  1.1535632610321045 Iter time:  12232.832193374634 ms
+Iter num:  9 Step count:  5 Loss:  1.129329800605774 Iter time:  13572.800159454346 ms
+Iter num:  10 Step count:  5 Loss:  1.0543243885040283 Iter time:  11681.366205215454 ms
+Iter num:  11 Step count:  6 Loss:  1.0559548139572144 Iter time:  14248.784303665161 ms
+Iter num:  12 Step count:  6 Loss:  0.9107952117919922 Iter time:  11551.745653152466 ms
+Iter num:  13 Step count:  7 Loss:  0.8959349989891052 Iter time:  14295.440673828125 ms
+Iter num:  14 Step count:  7 Loss:  0.7715906500816345 Iter time:  12982.912063598633 ms
+Iter num:  15 Step count:  8 Loss:  0.7742713689804077 Iter time:  15370.434045791626 ms
+Iter num:  16 Step count:  8 Loss:  0.8371721506118774 Iter time:  13670.062065124512 ms
+Iter num:  17 Step count:  9 Loss:  0.8095481395721436 Iter time:  13140.67029953003 ms
+Iter num:  18 Step count:  9 Loss:  0.8391497135162354 Iter time:  12752.37488746643 ms
+Iter num:  19 Step count:  10 Loss:  0.76238614320755 Iter time:  16007.80200958252 ms
+Iter num:  20 Step count:  10 Loss:  0.8038284778594971 Iter time:  11902.39405632019 ms
+Iter num:  21 Step count:  11 Loss:  0.7604804039001465 Iter time:  14807.66749382019 ms
+Iter num:  22 Step count:  11 Loss:  0.8178426623344421 Iter time:  12445.731163024902 ms
+Iter num:  23 Step count:  12 Loss:  0.7512520551681519 Iter time:  14149.425506591797 ms
+Iter num:  24 Step count:  12 Loss:  0.8701475262641907 Iter time:  11404.462337493896 ms
+Iter num:  25 Step count:  13 Loss:  0.8217295408248901 Iter time:  14369.163990020752 ms
+Iter num:  26 Step count:  13 Loss:  0.7994807362556458 Iter time:  10992.0334815979 ms
+Iter num:  27 Step count:  14 Loss:  0.7967494130134583 Iter time:  16272.547483444214 ms
+Iter num:  28 Step count:  14 Loss:  0.7452903389930725 Iter time:  12114.423513412476 ms
+Iter num:  29 Step count:  15 Loss:  0.8489717245101929 Iter time:  14182.066202163696 ms
+Iter num:  30 Step count:  15 Loss:  0.7992718815803528 Iter time:  12560.291051864624 ms
+Iter num:  31 Step count:  16 Loss:  0.7633489370346069 Iter time:  15105.932712554932 ms
+Iter num:  32 Step count:  16 Loss:  0.8447563648223877 Iter time:  11651.111602783203 ms
+Iter num:  33 Step count:  17 Loss:  0.8164434432983398 Iter time:  15687.597513198853 ms
+Iter num:  34 Step count:  17 Loss:  0.7526334524154663 Iter time:  12389.824390411377 ms
+Iter num:  35 Step count:  18 Loss:  0.7495055794715881 Iter time:  15153.027296066284 ms
+Iter num:  36 Step count:  18 Loss:  0.8318516612052917 Iter time:  11909.416437149048 ms
+Iter num:  37 Step count:  19 Loss:  0.7127942442893982 Iter time:  17509.34910774231 ms
+Iter num:  38 Step count:  19 Loss:  0.7291467785835266 Iter time:  12351.418018341064 ms
+Iter num:  39 Step count:  20 Loss:  0.8329991698265076 Iter time:  13680.770874023438 ms
+Iter num:  40 Step count:  20 Loss:  0.706444263458252 Iter time:  12724.508285522461 ms
+Iter num:  41 Step count:  21 Loss:  0.7280510067939758 Iter time:  15092.884302139282 ms
+Iter num:  42 Step count:  21 Loss:  0.7463948726654053 Iter time:  12474.192380905151 ms
+Iter num:  43 Step count:  22 Loss:  0.7504616379737854 Iter time:  15775.572061538696 ms
+Iter num:  44 Step count:  22 Loss:  0.7854539752006531 Iter time:  12040.25936126709 ms
+Iter num:  45 Step count:  23 Loss:  0.8030672073364258 Iter time:  15706.348657608032 ms
+Iter num:  46 Step count:  23 Loss:  0.7090464234352112 Iter time:  13185.496091842651 ms
+iter 39 step 20: loss 0.7319, iter time: 14505.11ms (optimizer.step)
+Iter num:  40 Step count:  20 Loss:  0.7895545959472656 Iter time:  12622.589588165283 ms
+iter 40 step 20: loss 0.7896, iter time: 12622.59ms
+Iter num:  41 Step count:  21 Loss:  0.7230821251869202 Iter time:  15181.275606155396 ms
+iter 41 step 21: loss 0.7231, iter time: 15181.28ms (optimizer.step)
+Iter num:  42 Step count:  21 Loss:  0.810070276260376 Iter time:  12472.06735610962 ms
+iter 42 step 21: loss 0.8101, iter time: 12472.07ms
+Iter num:  43 Step count:  22 Loss:  0.6862283945083618 Iter time:  15901.362895965576 ms
+iter 43 step 22: loss 0.6862, iter time: 15901.36ms (optimizer.step)
+Iter num:  44 Step count:  22 Loss:  0.7674768567085266 Iter time:  11907.833337783813 ms
+iter 44 step 22: loss 0.7675, iter time: 11907.83ms
+Iter num:  45 Step count:  23 Loss:  0.7038406729698181 Iter time:  15754.209280014038 ms
+iter 45 step 23: loss 0.7038, iter time: 15754.21ms (optimizer.step)
+Iter num:  46 Step count:  23 Loss:  0.7623322010040283 Iter time:  13240.861415863037 ms
+iter 46 step 23: loss 0.7623, iter time: 13240.86ms
+Training time: 1025.58s
+Saving adapter v2 weights to 'data/goog_finetuned/lit_model_adapter_finetuned.pth'
+gilbreth-k013:48449:48899 [1] NCCL INFO [Service thread] Connection closed by localRank 1
+gilbreth-k013:48448:48898 [0] NCCL INFO [Service thread] Connection closed by localRank 0
+gilbreth-k013:48449:48449 [1] NCCL INFO comm 0x5584bc54f4c0 rank 1 nranks 2 cudaDev 1 busId 81000 - Abort COMPLETE
+gilbreth-k013:48448:48448 [0] NCCL INFO comm 0x55a2b4d7adc0 rank 0 nranks 2 cudaDev 0 busId 21000 - Abort COMPLETE

@@ -1,0 +1,186 @@
+Run 'mamba init' to be able to run mamba activate/deactivate
+and start a new shell session. Or use conda to activate/deactivate.
+
+/var/spool/slurm/job3892526/slurm_script:31: command not found: module
+Initializing distributed: GLOBAL_RANK: 3, MEMBER: 4/4
+Initializing distributed: GLOBAL_RANK: 2, MEMBER: 3/4
+Initializing distributed: GLOBAL_RANK: 1, MEMBER: 2/4
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/4
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 4 processes
+----------------------------------------------------------------------------------------------------
+
+[rank: 0] Global seed set to 1337
+[rank: 1] Global seed set to 1337
+[rank: 2] Global seed set to 1337
+[rank: 3] Global seed set to 1337
+[rank: 2] Global seed set to 1339
+[rank: 0] Global seed set to 1337
+[rank: 3] Global seed set to 1340
+[rank: 1] Global seed set to 1338
+Traceback (most recent call last):
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 359, in <module>
+    CLI(setup)
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 85, in CLI
+    return _run_component(component, cfg_init)
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 147, in _run_component
+    return component(**cfg)
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 130, in setup
+    fabric.launch(main, data_dir, checkpoint_dir, out_dir)
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 807, in launch
+    return self._wrap_and_launch(function, self, *args, **kwargs)
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 889, in _wrap_and_launch
+    return to_run(*args, **kwargs)
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 894, in _wrap_with_setup
+    return to_run(*args, **kwargs)
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 173, in main
+    train(fabric, model, optimizer, train_data, val_data, checkpoint_dir, out_dir, speed_monitor)
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 244, in train
+    speed_monitor.on_train_batch_end(
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning_utilities/core/rank_zero.py", line 27, in wrapped_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/dchawra/lit-gpt/lit_gpt/speed_monitor.py", line 286, in on_train_batch_end
+    super().on_train_batch_end(*args, **kwargs)
+  File "/scratch/gilbreth/dchawra/lit-gpt/lit_gpt/speed_monitor.py", line 251, in on_train_batch_end
+    self.history_flops.append(flops_per_batch * world_size)
+TypeError: unsupported operand type(s) for *: 'function' and 'int'
+srun: error: gilbreth-k001: task 0: Exited with exit code 1
+[E ProcessGroupNCCL.cpp:466] [Rank 3] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800120 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:466] [Rank 1] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800122 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:466] [Rank 2] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800125 milliseconds before timing out.
+[E ProcessGroupNCCL.cpp:480] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:486] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:849] [Rank 3] NCCL watchdog thread terminated with exception: [Rank 3] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800120 milliseconds before timing out.
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  [Rank 3] NCCL watchdog thread terminated with exception: [Rank 3] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800120 milliseconds before timing out.
+Fatal Python error: Aborted
+
+Thread 0x00002aea16afb700 (most recent call first):
+  <no Python frame>
+
+Thread 0x00002aea1440b700 (most recent call first):
+  <no Python frame>
+
+Thread 0x00002ae802982080 (most recent call first):
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 2872 in all_gather_into_tensor
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47 in wrapper
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/flat_param.py", line 1331 in _all_gather_flat_param
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/flat_param.py", line 1251 in unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 334 in _unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 448 in _pre_forward_unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 413 in _pre_forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 818 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/scratch/gilbreth/dchawra/lit-gpt/lit_gpt/adapter.py", line 102 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 832 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/wrappers.py", line 116 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 229 in train
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 173 in main
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 894 in _wrap_with_setup
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 889 in _wrap_and_launch
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 807 in launch
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 130 in setup
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 147 in _run_component
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 85 in CLI
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 359 in <module>
+
+Extension modules: _cffi_backend, pydantic.typing, pydantic.errors, pydantic.version, pydantic.utils, pydantic.class_validators, pydantic.config, pydantic.color, pydantic.datetime_parse, pydantic.validators, pydantic.networks, pydantic.types, pydantic.json, pydantic.error_wrappers, pydantic.fields, pydantic.parse, pydantic.schema, pydantic.main, pydantic.dataclasses, pydantic.annotated_types, pydantic.decorator, pydantic.env_settings, pydantic.tools, pydantic, numpy.core._multiarray_umath, numpy.core._multiarray_tests, numpy.linalg._umath_linalg, numpy.fft._pocketfft_internal, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, yaml._yaml, zstandard.backend_c, multidict._multidict, yarl._quoting_c, aiohttp._helpers, aiohttp._http_writer, aiohttp._websocket, aiohttp._frozenlist, pvectorc, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pandas._libs.hashing, pyarrow.lib, pyarrow._hdfsio, pandas._libs.tslib, pandas._libs.ops, pyarrow._compute, pandas._libs.arrays, pandas._libs.sparse, pandas._libs.reduction, pandas._libs.indexing, pandas._libs.index, pandas._libs.internals, pandas._libs.join, pandas._libs.writers, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.testing, pandas._libs.parsers, pandas._l[E ProcessGroupNCCL.cpp:480] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:486] To avoid data inconsistency, we are taking the entire process down.
+ibs.json, markupsafe._speedups, matplotlib._c_internal_utils, PIL._imaging, matplotlib._path, kiwisolver._cext, matplotlib._image, websockets.speedups, PIL._webp, torch._C, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, gmpy2.gmpy2, regex._regex, sentencepiece._sentencepiece, scipy._lib._ccallback_c, numpy.linalg.lapack_lite, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.sparse.linalg._isolve._iterative, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg._cythonized_array_utils, scipy.linalg._flinalg, scipy.linalg._solve_toeplitz, scipy.linalg._matfuncs_sqrtm_triu, scipy.linalg.cython_lapack, scipy.linalg.cython_blas, scipy.linalg._matfuncs_expm, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, [E ProcessGroupNCCL.cpp:849] [Rank 2] NCCL watchdog thread terminated with exception: [Rank 2] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800125 milliseconds before timing out.
+scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._distance_wrap, scipy.spatial._hausdorff, scipy.special._ufuncs_cxx, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.special._ellip_harm_2, scipy.spatial.transform._rotation, scipy.ndimage._nd_image, _ni_label, scipy.ndimage._ni_label, scipy.optimize._minpack2, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._cobyla, scipy.optimize._slsqp, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy.optimize.__nnls, scipy.optimize._highs.cython.src._highs_wrapper, scipy.optimize._highs._highs_wrapper, scipy.optimize._highs.cython.src._highs_constants, scipy.optimize._highs._highs_constants, scipy.linalg._interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._directerminate called after throwing an instance of 'std::runtime_error'
+  what():  [Rank 2] NCCL watchdog thread terminated with exception: [Rank 2] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800125 milliseconds before timing out.
+Fatal Python error: Aborted
+
+Thread 0x00002b2a32bfb700 (most recent call first):
+  <no Python frame>
+
+Thread 0x00002b2a3040b700 (most recent call first):
+  <no Python frame>
+
+Thread 0x00002b281dc6d080 (most recent call first):
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 2872 in all_gather_into_tensor
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47 in wrapper
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/flat_param.py", line 1331 in _all_gather_flat_param
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/flat_param.py", line 1251 in unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 334 in _unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 448 in _pre_forward_unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 413 in _pre_forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 818 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/scratch/gilbreth/dchawra/lit-gpt/lit_gpt/adapter.py", line 102 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 832 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/wrappers.py", line 116 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+t, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.integrate._lsoda, scipy.special.cython_special, scipy.stats._stats, scipy.stats.beta_ufunc, scipy.stats._boost.beta_ufunc, scipy.stats.binom_ufunc, scipy.stats._boost.binom_ufunc, scipy.stats.nbinom_ufunc, scipy.stats._boost.nbinom_ufunc, scipy.stats.hypergeom_ufunc, scipy.stats._boost.hypergeom_ufunc, scipy.stats.ncf_ufunc, scipy.stats._boost.ncf_ufunc, scipy.stats.ncx2_ufunc, scipy.stats._boost.ncx2_ufunc, scipy.stats.nct_ufunc, scipy.stats._boost.nct_ufunc, scipy.stats.skewnorm_ufunc, scipy.stats._boost.skewnorm_ufunc, scipy.stats.invgauss_ufunc, scipy.stats._boost.invgauss_ufunc, scipy.interpolate._fitpack, scipy.interpolate.dfitpack, scipy.interpolate._bspl, scipy.interpolate._ppoly, scipy.interpolate.interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.stats._biasedurn, scipy.stats._levy_stable.levyst, scipy.stats._stats_pythran, scipy._lib._uarray._uarray, scipy.sta  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 229 in train
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 173 in main
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 894 in _wrap_with_setup
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 889 in _wrap_and_launch
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 807 in launch
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 130 in setup
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 147 in _run_component
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 85 in CLI
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 359 in <module>
+
+ts._statlib, scipy.stats._mvn, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._rcont.rcont, psutil._psutil_linux, psutil._psutil_posix, google.protobuf.pyext._message (total: 212)
+Extension modules: _cffi_backend, pydantic.typing, pydantic.errors, pydantic.version, pydantic.utils, pydantic.class_validators, pydantic.config, pydantic.color, pydantic.datetime_parse, pydantic.validators, pydantic.networks, pydantic.types, pydantic.json, pydantic.error_wrappers, pydantic.fields, pydantic.parse, pydantic.schema, pydantic.main, pydantic.dataclasses, pydantic.annotated_types, pydantic.decorator, pydantic.env_settings, pydantic.tools, pydantic, numpy.core._multiarray_umath, numpy.core._multiarray_tests, numpy.linalg._umath_linalg, numpy.fft._pocketfft_internal, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, yaml._yaml, zstandard.backend_c, multidict._multidict, yarl._quoting_c, aiohttp._helpers, aiohttp._http_writer, aiohttp._websocket, aiohttp._frozenlist, pvectorc, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pandas._libs.hashing, pyarrow.lib, pyarrow._hdfsio, pandas._libs.tslib, pandas._libs.ops, pyarrow._compute, pandas._libs.arrays, pandas._libs.sparse, pandas._libs.reduction, pandas._libs.indexing, pandas._libs.index, pandas._libs.internals, pandas._libs.join, pandas._libs.writers, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.testing, pandas._libs.parsers, pandas._libs.json, markupsafe._speedups, matplotlib._c_internal_utils, PIL._imaging, matplotlib._path, kiwisolver._cext, matplotlib._image, websockets.speedups, PIL._webp, torch._C, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, gmpy2.gmpy2, regex._regex, sentencepiece._sentencepiece, scipy._lib._ccallback_c, numpy.linalg.lapack_lite, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.sparse.linalg._isolve._iterative, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg._cythonized_array_utils, scipy.linalg._flinalg, scipy.linalg._solve_toeplitz, scipy.linalg._matfuncs_sqrtm_triu, scipy.linalg.cython_lapack, scipy.linalg.cython_blas, scipy.linalg._matfuncs_expm, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._distance_wrap, scipy.spatial._hausdorff, scipy.special._ufuncs_cxx, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.special._ellip_harm_2, scipy.spatial.transform._rotation, scipy.ndimage._nd_image, _ni_label, scipy.ndimage._ni_label, scipy.optimize._minpack2, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._cobyla, scipy.optimize._slsqp, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy.optimize.__nnls, scipy.optimize._highs.cython.src._highs_wrapper, scipy.optimize._highs._highs_wrapper, scipy.optimize._highs.cython.src._highs_constants, scipy.optimize._highs._highs_constants, scipy.linalg._interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.integrate._lsoda, scipy.special.cython_special, scipy.stats._stats, scipy.stats.beta_ufunc, scipy.stats._boost.beta_ufunc, scipy.stats.binom_ufunc, scipy.stats._boost.binom_ufunc, scipy.stats.nbinom_ufunc, scipy.stats._boost.nbinom_ufunc, scipy.stats.hypergeom_ufunc, scipy.stats._boost.hypergeom_ufunc, scipy.stats.ncf_ufunc, scipy.stats._boost.ncf_ufunc, scipy.stats.ncx2_ufunc, scipy.stats._boost.ncx2_ufunc, scipy.stats.nct_ufunc, scipy.stats._boost.nct_ufunc, scipy.stats.skewnorm_ufunc, scipy.stats._boost.skewnorm_ufunc, scipy.stats.invgauss_ufunc, scipy.stats._boost.invgauss_ufunc, scipy.interpolate._fitpack, scipy.interpolate.dfitpack, scipy.interpolate._bspl, scipy.interpolate._ppoly, scipy.interpolate.interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.stats._biasedurn, scipy.stats._levy_stable.levyst, scipy.stats._stats_pythran, scipy._lib._uarray._uarray, scipy.stats._statlib, scipy.stats._mvn, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._rcont.rcont, psutil._psutil_linux, psutil._psutil_posix, google.protobuf.pyext._message (total: 212)
+srun: error: gilbreth-k011: task 3: Aborted
+srun: error: gilbreth-k011: task 2: Aborted
+[E ProcessGroupNCCL.cpp:480] Some NCCL operations have failed or timed out. Due to the asynchronous nature of CUDA kernels, subsequent GPU operations might run on corrupted/incomplete data.
+[E ProcessGroupNCCL.cpp:486] To avoid data inconsistency, we are taking the entire process down.
+[E ProcessGroupNCCL.cpp:849] [Rank 1] NCCL watchdog thread terminated with exception: [Rank 1] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800122 milliseconds before timing out.
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  [Rank 1] NCCL watchdog thread terminated with exception: [Rank 1] Watchdog caught collective operation timeout: WorkNCCL(SeqNum=197, OpType=_ALLGATHER_BASE, NumelIn=65553024, NumelOut=262212096, Timeout(ms)=1800000) ran for 1800122 milliseconds before timing out.
+Fatal Python error: Aborted
+
+Thread 0x00002ba3b6fd9700 (most recent call first):
+  <no Python frame>
+
+Thread 0x00002ba39a7c2700 (most recent call first):
+  <no Python frame>
+
+Thread 0x00002ba1a394b080 (most recent call first):
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/distributed_c10d.py", line 2872 in all_gather_into_tensor
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/c10d_logger.py", line 47 in wrapper
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/flat_param.py", line 1331 in _all_gather_flat_param
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/flat_param.py", line 1251 in unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 334 in _unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 448 in _pre_forward_unshard
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 413 in _pre_forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 818 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/scratch/gilbreth/dchawra/lit-gpt/lit_gpt/adapter.py", line 102 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 832 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/wrappers.py", line 116 in forward
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1527 in _call_impl
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1518 in _wrapped_call_impl
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 229 in train
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 173 in main
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 894 in _wrap_with_setup
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 889 in _wrap_and_launch
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/lightning/fabric/fabric.py", line 807 in launch
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 130 in setup
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 147 in _run_component
+  File "/home/dchawra/mambaforge/envs/ml/lib/python3.10/site-packages/jsonargparse/_cli.py", line 85 in CLI
+  File "/scratch/gilbreth/dchawra/lit-gpt/finetune/adapter_v2.py", line 359 in <module>
+
+Extension modules: _cffi_backend, pydantic.typing, pydantic.errors, pydantic.version, pydantic.utils, pydantic.class_validators, pydantic.config, pydantic.color, pydantic.datetime_parse, pydantic.validators, pydantic.networks, pydantic.types, pydantic.json, pydantic.error_wrappers, pydantic.fields, pydantic.parse, pydantic.schema, pydantic.main, pydantic.dataclasses, pydantic.annotated_types, pydantic.decorator, pydantic.env_settings, pydantic.tools, pydantic, numpy.core._multiarray_umath, numpy.core._multiarray_tests, numpy.linalg._umath_linalg, numpy.fft._pocketfft_internal, numpy.random._common, numpy.random.bit_generator, numpy.random._bounded_integers, numpy.random._mt19937, numpy.random.mtrand, numpy.random._philox, numpy.random._pcg64, numpy.random._sfc64, numpy.random._generator, yaml._yaml, zstandard.backend_c, multidict._multidict, yarl._quoting_c, aiohttp._helpers, aiohttp._http_writer, aiohttp._websocket, aiohttp._frozenlist, pvectorc, pandas._libs.tslibs.np_datetime, pandas._libs.tslibs.dtypes, pandas._libs.tslibs.base, pandas._libs.tslibs.nattype, pandas._libs.tslibs.timezones, pandas._libs.tslibs.ccalendar, pandas._libs.tslibs.fields, pandas._libs.tslibs.timedeltas, pandas._libs.tslibs.tzconversion, pandas._libs.tslibs.timestamps, pandas._libs.properties, pandas._libs.tslibs.offsets, pandas._libs.tslibs.strptime, pandas._libs.tslibs.parsing, pandas._libs.tslibs.conversion, pandas._libs.tslibs.period, pandas._libs.tslibs.vectorized, pandas._libs.ops_dispatch, pandas._libs.missing, pandas._libs.hashtable, pandas._libs.algos, pandas._libs.interval, pandas._libs.lib, pandas._libs.hashing, pyarrow.lib, pyarrow._hdfsio, pandas._libs.tslib, pandas._libs.ops, pyarrow._compute, pandas._libs.arrays, pandas._libs.sparse, pandas._libs.reduction, pandas._libs.indexing, pandas._libs.index, pandas._libs.internals, pandas._libs.join, pandas._libs.writers, pandas._libs.window.aggregations, pandas._libs.window.indexers, pandas._libs.reshape, pandas._libs.groupby, pandas._libs.testing, pandas._libs.parsers, pandas._libs.json, markupsafe._speedups, matplotlib._c_internal_utils, PIL._imaging, matplotlib._path, kiwisolver._cext, matplotlib._image, websockets.speedups, PIL._webp, torch._C, torch._C._fft, torch._C._linalg, torch._C._nested, torch._C._nn, torch._C._sparse, torch._C._special, gmpy2.gmpy2, regex._regex, sentencepiece._sentencepiece, scipy._lib._ccallback_c, numpy.linalg.lapack_lite, scipy.sparse._sparsetools, _csparsetools, scipy.sparse._csparsetools, scipy.sparse.linalg._isolve._iterative, scipy.linalg._fblas, scipy.linalg._flapack, scipy.linalg._cythonized_array_utils, scipy.linalg._flinalg, scipy.linalg._solve_toeplitz, scipy.linalg._matfuncs_sqrtm_triu, scipy.linalg.cython_lapack, scipy.linalg.cython_blas, scipy.linalg._matfuncs_expm, scipy.linalg._decomp_update, scipy.sparse.linalg._dsolve._superlu, scipy.sparse.linalg._eigen.arpack._arpack, scipy.sparse.csgraph._tools, scipy.sparse.csgraph._shortest_path, scipy.sparse.csgraph._traversal, scipy.sparse.csgraph._min_spanning_tree, scipy.sparse.csgraph._flow, scipy.sparse.csgraph._matching, scipy.sparse.csgraph._reordering, scipy.spatial._ckdtree, scipy._lib.messagestream, scipy.spatial._qhull, scipy.spatial._voronoi, scipy.spatial._distance_wrap, scipy.spatial._hausdorff, scipy.special._ufuncs_cxx, scipy.special._ufuncs, scipy.special._specfun, scipy.special._comb, scipy.special._ellip_harm_2, scipy.spatial.transform._rotation, scipy.ndimage._nd_image, _ni_label, scipy.ndimage._ni_label, scipy.optimize._minpack2, scipy.optimize._group_columns, scipy.optimize._trlib._trlib, scipy.optimize._lbfgsb, _moduleTNC, scipy.optimize._moduleTNC, scipy.optimize._cobyla, scipy.optimize._slsqp, scipy.optimize._minpack, scipy.optimize._lsq.givens_elimination, scipy.optimize._zeros, scipy.optimize.__nnls, scipy.optimize._highs.cython.src._highs_wrapper, scipy.optimize._highs._highs_wrapper, scipy.optimize._highs.cython.src._highs_constants, scipy.optimize._highs._highs_constants, scipy.linalg._interpolative, scipy.optimize._bglu_dense, scipy.optimize._lsap, scipy.optimize._direct, scipy.integrate._odepack, scipy.integrate._quadpack, scipy.integrate._vode, scipy.integrate._dop, scipy.integrate._lsoda, scipy.special.cython_special, scipy.stats._stats, scipy.stats.beta_ufunc, scipy.stats._boost.beta_ufunc, scipy.stats.binom_ufunc, scipy.stats._boost.binom_ufunc, scipy.stats.nbinom_ufunc, scipy.stats._boost.nbinom_ufunc, scipy.stats.hypergeom_ufunc, scipy.stats._boost.hypergeom_ufunc, scipy.stats.ncf_ufunc, scipy.stats._boost.ncf_ufunc, scipy.stats.ncx2_ufunc, scipy.stats._boost.ncx2_ufunc, scipy.stats.nct_ufunc, scipy.stats._boost.nct_ufunc, scipy.stats.skewnorm_ufunc, scipy.stats._boost.skewnorm_ufunc, scipy.stats.invgauss_ufunc, scipy.stats._boost.invgauss_ufunc, scipy.interpolate._fitpack, scipy.interpolate.dfitpack, scipy.interpolate._bspl, scipy.interpolate._ppoly, scipy.interpolate.interpnd, scipy.interpolate._rbfinterp_pythran, scipy.interpolate._rgi_cython, scipy.stats._biasedurn, scipy.stats._levy_stable.levyst, scipy.stats._stats_pythran, scipy._lib._uarray._uarray, scipy.stats._statlib, scipy.stats._mvn, scipy.stats._sobol, scipy.stats._qmc_cy, scipy.stats._rcont.rcont, psutil._psutil_linux, psutil._psutil_posix, google.protobuf.pyext._message (total: 212)
+srun: error: gilbreth-k001: task 1: Aborted

@@ -1,0 +1,15 @@
+Run 'mamba init' to be able to run mamba activate/deactivate
+and start a new shell session. Or use conda to activate/deactivate.
+
+/var/spool/slurm/job3844313/slurm_script:31: command not found: module
+Initializing distributed: GLOBAL_RANK: 1, MEMBER: 2/2
+Initializing distributed: GLOBAL_RANK: 0, MEMBER: 1/2
+----------------------------------------------------------------------------------------------------
+distributed_backend=nccl
+All distributed processes registered. Starting with 2 processes
+----------------------------------------------------------------------------------------------------
+
+[rank: 0] Global seed set to 1337
+[rank: 1] Global seed set to 1337
+[rank: 1] Global seed set to 1338
+[rank: 0] Global seed set to 1337
