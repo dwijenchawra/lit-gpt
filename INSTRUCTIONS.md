@@ -35,5 +35,12 @@ Edit the rest of the script to match your conda/mamba/venv environment, and chan
 
 Change the rest of the flags accordingly.
 
+## Training:
+
+1. Submit the job to the cluster using `sbatch slurmbit.sh`
+2. Use the following commands to monitor the job:
+    - `squeue -l | grep <username.`: to see the nodes you have running
+    - OPTIONAL: ssh into the node and run `nvidia-smi` to see the GPU usage
+    - `tail -f <output_file>`: to see the output of the job logs
 
 
