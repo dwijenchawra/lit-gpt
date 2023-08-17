@@ -35,6 +35,8 @@ Edit the rest of the script to match your conda/mamba/venv environment, and chan
 
 Change the rest of the flags accordingly.
 
+Edit `finetune/adapter_v2.py` to match the input data, original model location, and output location.
+
 ## Training:
 
 1. Submit the job to the cluster using `sbatch slurmbit.sh`
@@ -43,4 +45,7 @@ Change the rest of the flags accordingly.
     - OPTIONAL: ssh into the node and run `nvidia-smi` to see the GPU usage
     - `tail -f <output_file>`: to see the output of the job logs
 
+## Evaluation:
 
+1. Edit `generate/adapter_v2.py` to match the checkpoint and adapter directory.
+2. `srun --gres=gpu:2 --account=<account> python generate/adapter_v2.py --prompt <prompt>` will generate a prediction on the prompt.
